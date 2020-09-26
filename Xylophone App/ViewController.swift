@@ -1,20 +1,24 @@
-//
-//  ViewController.swift
-//  Xylophone App
-//
-//  Created by Ilham on 25/04/20.
-//  Copyright © 2020 Ilham. All rights reserved.
-//
+
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
+    
+    var player: AVAudioPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func keyPressed(_ sender: UIButton) {
+        playSound(SoundName: sender.currentTitle!)
+    }
+    
+    func playSound(SoundName: String) {
+        let url = Bundle.main.url(forResource: SoundName, withExtension: "wav")
+        player = try! AVAudioPlayer(contentsOf: url!)
+        player.play()
+                
+    }
 }
-
